@@ -4,7 +4,7 @@ Smart Study Planner is a browser-based study organization tool for students who 
 
 ## Software Demo Video
 
-**Video link:** 
+**Video link: https://www.loom.com/share/e91a8b316bd6478f876d062a37e0a512** 
 
 The recording must show the application running, demonstrate adding and managing tasks, walk through the JavaScript and CSS, and include a talking-head image of me while I present the project.
 
