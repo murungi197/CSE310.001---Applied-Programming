@@ -1,25 +1,51 @@
-# Overview
+# Smart Study Planner
 
-This project is a simple Python program created to strengthen my understanding of programming fundamentals and software development. It demonstrates how to create, organize, and run a basic software program while practicing the development workflow used in larger projects.
+Smart Study Planner is a browser-based study organization tool for students who want a simple way to turn course deadlines into an actionable plan. Users can add tasks, assign a course, deadline, priority, and category, then search, filter, complete, or remove tasks. The application saves the plan in the browser with `localStorage`.
 
-The software displays a personalized "Hello World" message in the console. It also introduces the basic use of Python output statements and provides a simple starting point for developing more advanced programs.
+## Software Demo Video
 
-The purpose of creating this software is to strengthen my programming skills, become more comfortable working with development tools such as Visual Studio Code and Git, and practice managing and publishing software projects using GitHub.
+**Video link: https://www.loom.com/share/e91a8b316bd6478f876d062a37e0a512** 
 
-[Software Demo Video](http://youtube.link.goes.here)
+The recording must show the application running, demonstrate adding and managing tasks, walk through the JavaScript and CSS, and include a talking-head image of me while I present the project.
 
-# Development Environment
+## Development Environment
 
-I developed this software using Visual Studio Code as my integrated development environment (IDE). Git was used for version control, and GitHub was used to publish and manage the project repository.
+This project was developed in Visual Studio Code and tested as a static browser application. Git is used for version control and GitHub is used for publication.
 
-The programming language used for this project is Python. The program uses Python's built-in `print()` function to display text in the console.
+The project uses:
 
-# Useful Websites
+- HTML5 for the application structure and accessible form controls.
+- CSS3 for the responsive dashboard layout, colors, typography, and task states.
+- Modern JavaScript (ES6+) for application state, functions, DOM manipulation, array methods, event handling, recursion, and exception handling.
+- The date-fns JavaScript library, loaded from jsDelivr, for reliable deadline parsing and formatting.
 
-* [Python Documentation](https://docs.python.org/3/)
-* [Python Tutorial](https://docs.python.org/3/tutorial/)
-* [Markdown Guide](https://www.markdownguide.org/cheat-sheet/)
-* [GitHub Docs](https://docs.github.com/)
+## Useful Websites
 
-https://www.loom.com/share/25c6bfc7d5f54094ac5ead5b8d8e984c
+- [MDN JavaScript Guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide)
+- [MDN Array Methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
+- [MDN Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API)
+- [date-fns Documentation](https://date-fns.org/)
+- [Markdown Guide](https://www.markdownguide.org/cheat-sheet/)
+- [GitHub Docs](https://docs.github.com/)
 
+## Features Demonstrated
+
+- JavaScript functions organize task creation, filtering, rendering, persistence, and progress calculations.
+- Screen output updates the dashboard counters, task list, category summary, status messages, and toast notifications.
+- ES6 array methods including `map`, `filter`, `reduce`, `find`-style set construction, and spread syntax process task data.
+- Recursion is used by `renderCategoryTree` to render each category summary from a list of category entries.
+- A third-party library, date-fns, formats deadlines and identifies tasks due today.
+- Exception throwing and handling validates task input and handles malformed saved browser data.
+- DOM manipulation creates task elements, updates controls, and responds to user events without reloading the page.
+- CSS provides a responsive layout that works on desktop and mobile screens.
+
+## How to Run
+
+1. Clone or download this repository.
+2. Open the `Smart-Study-Planner` folder in Visual Studio Code.
+3. Open `index.html` in a browser, or use a local development server such as the VS Code Live Server extension.
+4. Add a task and interact with the planner. Data is saved in that browser's local storage.
+
+## Planned Video Walkthrough
+
+The completed video should follow this sequence: introduce the problem and interface, add a few tasks with different courses and priorities, demonstrate search and filters, mark a task complete, remove a task, refresh to show persistence, then explain the main functions and required module concepts in the source code. The presenter must remain visible in a talking-head view during the explanation.
