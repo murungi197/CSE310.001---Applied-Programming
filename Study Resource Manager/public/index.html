@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Study Resource Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand-mark">SR</span
+          ><span>Study<br /><strong>Resource</strong></span>
+        </div>
+        <nav class="nav-links" aria-label="Main navigation">
+          <button class="nav-link active" data-view="resources">
+            <span>◈</span> Resources
+          </button>
+          <button class="nav-link" data-view="courses">
+            <span>◉</span> Courses
+          </button>
+        </nav>
+        <div class="sidebar-note">
+          <span class="status-dot"></span>
+          <div>
+            <strong>Cloud ready</strong><small>Supabase connection</small>
+          </div>
+        </div>
+        <div class="sidebar-footer">
+          CSE 310<br /><span>Module 2 / Cloud Databases</span>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div class="breadcrumb">
+            Workspace <span>/</span>
+            <strong id="breadcrumbLabel">Resources</strong>
+          </div>
+          <button class="profile-button" title="Student profile">AJ</button>
+        </header>
+        <section class="page-heading">
+          <div>
+            <p class="eyebrow">YOUR LEARNING LIBRARY</p>
+            <h1>Keep good stuff<br /><em>close.</em></h1>
+            <p class="lede">
+              One calm place for the links, notes, and tutorials that move your
+              courses forward.
+            </p>
+          </div>
+          <button class="primary-button" id="addResourceButton">
+            <span>+</span> Add resource
+          </button>
+        </section>
+
+        <section id="resourcesView" class="view-panel">
+          <div class="stats-row">
+            <div class="stat-card">
+              <span class="stat-number" id="resourceCount">0</span
+              ><span class="stat-label">Total resources</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number" id="courseCount">0</span
+              ><span class="stat-label">Active courses</span>
+            </div>
+            <div class="stat-card accent-stat">
+              <span class="stat-number" id="typeCount">0</span
+              ><span class="stat-label">Resource types</span>
+            </div>
+          </div>
+          <div class="toolbar">
+            <div class="search-wrap">
+              <span>⌕</span
+              ><input
+                id="searchInput"
+                type="search"
+                placeholder="Search your library..."
+              />
+            </div>
+            <select id="courseFilter" aria-label="Filter by course">
+              <option value="all">All courses</option></select
+            ><select id="typeFilter" aria-label="Filter by type">
+              <option value="all">All types</option>
+            </select>
+          </div>
+          <div class="section-label">
+            <span>YOUR RESOURCES</span><span id="resultCount">0 items</span>
+          </div>
+          <div id="resourceGrid" class="resource-grid"></div>
+        </section>
+
+        <section id="coursesView" class="view-panel hidden">
+          <div class="courses-heading">
+            <div>
+              <p class="eyebrow">YOUR SEMESTER</p>
+              <h2>Courses</h2>
+            </div>
+            <button class="secondary-button" id="addCourseButton">
+              + Add course
+            </button>
+          </div>
+          <div id="courseGrid" class="course-grid"></div>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop hidden" id="resourceModal">
+      <div class="modal">
+        <button class="close-button" data-close="resourceModal">×</button>
+        <p class="eyebrow" id="modalEyebrow">NEW RESOURCE</p>
+        <h2 id="modalTitle">Add a resource</h2>
+        <form id="resourceForm">
+          <input type="hidden" id="resourceId" /><label
+            >Title<input
+              id="resourceTitle"
+              required
+              placeholder="e.g. JavaScript Recursion" /></label
+          ><label>Course<select id="resourceCourse" required></select></label
+          ><label
+            >Description<textarea
+              id="resourceDescription"
+              required
+              rows="3"
+              placeholder="What makes this useful?"
+            ></textarea></label
+          ><label
+            >Resource URL<input
+              id="resourceUrl"
+              type="url"
+              required
+              placeholder="https://..." /></label
+          ><label
+            >Type<select id="resourceType" required>
+              <option>Tutorial</option>
+              <option>Documentation</option>
+              <option>Course Notes</option>
+              <option>Article</option>
+              <option>Video</option>
+              <option>Practice</option>
+            </select></label
+          >
+          <div class="form-actions">
+            <button
+              type="button"
+              class="text-button"
+              data-close="resourceModal"
+            >
+              Cancel</button
+            ><button type="submit" class="primary-button">Save resource</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-backdrop hidden" id="courseModal">
+      <div class="modal small-modal">
+        <button class="close-button" data-close="courseModal">×</button>
+        <p class="eyebrow">NEW COURSE</p>
+        <h2>Add a course</h2>
+        <form id="courseForm">
+          <label
+            >Course code<input
+              id="courseCode"
+              required
+              placeholder="e.g. CSE 310" /></label
+          ><label
+            >Course name<input
+              id="courseName"
+              required
+              placeholder="e.g. Applied Programming"
+          /></label>
+          <div class="form-actions">
+            <button type="button" class="text-button" data-close="courseModal">
+              Cancel</button
+            ><button type="submit" class="primary-button">Add course</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="/app.js"></script>
+  </body>
+</html>
