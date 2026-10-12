@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Smart Study Planner helps students organize coursework and track study progress."
+    />
+    <title>Smart Study Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">CSE 310 // STUDY SYSTEM</p>
+          <h1>Smart Study<br /><span>Planner</span></h1>
+          <p class="hero-copy">
+            Turn scattered deadlines into a clear next step.
+          </p>
+        </div>
+        <div class="date-stamp" aria-label="Today's date">
+          <span id="todayLabel">Today</span>
+          <strong id="todayDate">--</strong>
+        </div>
+      </header>
+
+      <section class="stats-grid" aria-label="Study progress summary">
+        <article class="stat-card stat-card--dark">
+          <span class="stat-label">Total tasks</span
+          ><strong id="totalTasks">0</strong
+          ><span class="stat-note">in your study queue</span>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">Completed</span
+          ><strong id="completedTasks">0</strong
+          ><span class="stat-note">small wins add up</span>
+        </article>
+        <article class="stat-card stat-card--accent">
+          <span class="stat-label">Progress</span
+          ><strong id="progressPercent">0%</strong
+          ><span class="stat-note">toward your plan</span>
+        </article>
+      </section>
+
+      <section class="workspace">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">01 / Capture</p>
+            <h2>Add a study task</h2>
+          </div>
+          <span class="heading-mark">+</span>
+        </div>
+        <form id="taskForm" class="task-form">
+          <label class="field field--wide"
+            >Task title
+            <input
+              id="taskTitle"
+              type="text"
+              maxlength="80"
+              placeholder="Read Chapter 3"
+              required
+            />
+          </label>
+          <label class="field"
+            >Course
+            <input
+              id="taskCourse"
+              type="text"
+              maxlength="30"
+              placeholder="CSE 340"
+              required
+            />
+          </label>
+          <label class="field"
+            >Deadline
+            <input id="taskDeadline" type="date" required />
+          </label>
+          <label class="field"
+            >Priority
+            <select id="taskPriority">
+              <option value="high">High</option>
+              <option value="medium" selected>Medium</option>
+              <option value="low">Low</option>
+            </select>
+          </label>
+          <label class="field"
+            >Category
+            <select id="taskCategory">
+              <option value="Reading">Reading</option>
+              <option value="Practice">Practice</option>
+              <option value="Project">Project</option>
+              <option value="Review">Review</option>
+            </select>
+          </label>
+          <button class="button button--primary" type="submit">
+            Add task <span aria-hidden="true">↗</span>
+          </button>
+        </form>
+        <p
+          id="formMessage"
+          class="form-message"
+          role="status"
+          aria-live="polite"
+        ></p>
+      </section>
+
+      <section class="workspace workspace--tasks">
+        <div class="section-heading section-heading--tasks">
+          <div>
+            <p class="eyebrow">02 / Focus</p>
+            <h2>My tasks</h2>
+          </div>
+          <span id="taskCountLabel" class="task-count">0 tasks</span>
+        </div>
+        <div class="toolbar">
+          <label class="search-field"
+            ><span aria-hidden="true">⌕</span
+            ><input
+              id="searchInput"
+              type="search"
+              placeholder="Search tasks or courses"
+              aria-label="Search tasks or courses"
+          /></label>
+          <label class="select-field"
+            ><span class="sr-only">Filter by course</span
+            ><select id="courseFilter">
+              <option value="all">All courses</option>
+            </select></label
+          >
+          <label class="select-field"
+            ><span class="sr-only">Filter by status</span
+            ><select id="statusFilter">
+              <option value="all">All statuses</option>
+              <option value="active">Active</option>
+              <option value="completed">Completed</option>
+            </select></label
+          >
+        </div>
+        <div id="taskList" class="task-list" aria-live="polite"></div>
+        <div id="emptyState" class="empty-state" hidden>
+          <span class="empty-icon">⋈</span>
+          <h3>Your plan is clear.</h3>
+          <p>Add a task above to give your next study session a shape.</p>
+        </div>
+      </section>
+
+      <section class="workspace category-panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">03 / Pattern</p>
+            <h2>Study by category</h2>
+          </div>
+        </div>
+        <div id="categoryTree" class="category-tree"></div>
+      </section>
+
+      <footer>
+        <span>SMART STUDY PLANNER</span><span>Made for focused progress.</span>
+      </footer>
+    </main>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="https://cdn.jsdelivr.net/npm/date-fns@4.1.0/cdn.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
